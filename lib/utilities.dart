@@ -18,23 +18,17 @@ class Utilities
 
   static String get_secrets_file_path()
   {
-    // Are we running unpacked ?
-    if ( io.Platform.executable.endsWith('/bin/dart') )
-    {
-      return "../${ Constants.SECRETS_FILE_NAME }";
-    }
-
     // Running compiled, file is alongside executable
     return "./${ Constants.SECRETS_FILE_NAME }";
   }
 
-  static Future<Map?> get_user_secrets() async
+  static Future<Map<String, dynamic>?> get_user_secrets() async
   {
-    var fileExists = await io.File(get_secrets_file_path()).exists();
+    bool fileExists = await (io.File(get_secrets_file_path())).exists();
 
     if ( fileExists )
     {
-      String secrets_raw = await io.File(get_secrets_file_path()).readAsString();
+      String secrets_raw = await (io.File(get_secrets_file_path())).readAsString();
       Map<String, dynamic> user_secrets = json.decode(secrets_raw);
 
       return user_secrets;
