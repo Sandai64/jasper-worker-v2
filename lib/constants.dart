@@ -2,6 +2,7 @@
 
 class Constants
 {
-  static const String VERSION = "2.0";
+  static const String VERSION = '2.0';
+  static const String SECRETS_FILE_NAME = 'secrets.json';
 }
 
